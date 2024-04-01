@@ -19,43 +19,6 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
   
-Cypress.Commands.add('loginToAuth0', (username: string, password: string) => {
-  // Origin for Multidomain
-  cy.origin(
-    Cypress.env('auth0_domain'),
-    { args: { username, password } },
-    ({ username, password }) => {
-      cy.get('input#username').type(username);
-      cy.get('input#password').type(password, { log: false });
-      cy.contains('button[value=default]', 'Continue').click();
-    }
-  );
-
-  cy.url().should('contain', Cypress.config('baseUrl'));
-})
-
-Cypress.Commands.add(
-  'loginToAuth0ViaSocial',
-  (username: string, password: string) => {
-    cy.origin(Cypress.env('auth0_domain'), () => {
-      cy.get('form[data-provider="linkedin"]').submit();
-    })
-  
-    cy.origin(
-      'https://www.linkedin.com/uas/login',
-      {
-        args: {
-          username,
-          password,
-        },
-      },
-      ({ username, password }) => {
-        cy.get('#username').type(username);
-        cy.get('#password').type(password, {
-          log: false,
-        });
-        cy.get('[type="submit"]').click();
-      }
-    );
-  }
-);
+Cypress.Commands.add('myCommand', (param1: string, param2: string) => {
+  // Fill this command with life~
+});
