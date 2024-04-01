@@ -29,7 +29,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
         loginToAuth0(username: string, password: string): Chainable<void>
-        loginToAuth0ViaSocial(SOCIAL_PROVIDER: string): Chainable<void>
+        loginToAuth0ViaSocial(username: string, password: string): Chainable<void>
     }
   }
 }
