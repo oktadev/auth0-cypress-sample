@@ -32,30 +32,4 @@ Cypress.Commands.add('loginToAuth0', (username: string, password: string) => {
   );
 
   cy.url().should('contain', Cypress.config('baseUrl'));
-})
-
-Cypress.Commands.add(
-  'loginToAuth0ViaSocial',
-  (username: string, password: string) => {
-    cy.origin(Cypress.env('auth0_domain'), () => {
-      cy.get('form[data-provider="linkedin"]').submit();
-    })
-  
-    cy.origin(
-      'https://www.linkedin.com/uas/login',
-      {
-        args: {
-          username,
-          password,
-        },
-      },
-      ({ username, password }) => {
-        cy.get('#username').type(username);
-        cy.get('#password').type(password, {
-          log: false,
-        });
-        cy.get('[type="submit"]').click();
-      }
-    );
-  }
-);
+});
